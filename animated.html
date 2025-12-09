@@ -1,19 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Special Animated Message</title>
+  <title>Romantic Message</title>
   <style>
-      body { margin:0; padding:0; overflow:hidden; background:#ffdde6; font-family:Arial; }
-      .message { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:38px; color:#ff0055; font-weight:bold; text-shadow:0 0 20px #ff0055; animation:fadeIn 2s ease-in-out; text-align:center; }
-      @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-40%);} to {opacity:1; transform:translate(-50%,-50%);} }
-      .heart { position:fixed; top:-10px; color:#ff3366; font-size:25px; animation:fall 5s linear infinite; user-select:none; }
-      @keyframes fall {0%{transform:translateY(-100px);opacity:1;}100%{transform:translateY(120vh);opacity:0;}}
-      #playBtn { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); padding:10px 20px; font-size:18px; background:#ff3366; color:white; border:none; border-radius:8px; cursor:pointer;}
+      body { 
+          margin:0; 
+          padding:0; 
+          overflow:hidden; 
+          background: linear-gradient(#ffdde6, #f9d6f0);
+          font-family: 'Arial', sans-serif;
+      }
+
+      .message { 
+          position:absolute; 
+          top:50%; 
+          left:50%; 
+          transform:translate(-50%,-50%); 
+          font-size:36px; 
+          color:#ff0055; 
+          font-weight:bold; 
+          text-shadow: 0 0 15px #ff3366, 0 0 30px #ff6699, 0 0 50px #ff99cc;
+          animation:fadeIn 3s ease-in-out; 
+          text-align:center; 
+          max-width:80%;
+      }
+
+      @keyframes fadeIn { 
+          from { opacity:0; transform:translate(-50%,-40%);} 
+          to { opacity:1; transform:translate(-50%,-50%);} 
+      }
+
+      .heart, .smallHeart, .star {
+          position:fixed;
+          top:-20px;
+          user-select:none;
+          pointer-events:none;
+      }
+
+      .heart {
+          color:#ff3366;
+          font-size:28px;
+          animation:fall 5s linear infinite;
+      }
+
+      .smallHeart {
+          color:#ff6699;
+          font-size:18px;
+          animation:fall 4s linear infinite;
+      }
+
+      .star {
+          color:#fffacd;
+          font-size:14px;
+          animation:fall 6s linear infinite;
+      }
+
+      @keyframes fall {
+          0% { transform: translateY(-50px) rotate(0deg); opacity:1; }
+          100% { transform: translateY(120vh) rotate(360deg); opacity:0; }
+      }
+
+      #playBtn { 
+          position:absolute; 
+          bottom:20px; 
+          left:50%; 
+          transform:translateX(-50%); 
+          padding:10px 20px; 
+          font-size:18px; 
+          background:#ff3366; 
+          color:white; 
+          border:none; 
+          border-radius:8px; 
+          cursor:pointer;
+          box-shadow: 0 0 15px #ff3366;
+      }
   </style>
 </head>
 <body>
 
-<div class="message">BABYY TU MERA TIMEPASS NHII HAI YRR TU HIJ MERAA SABB HAII MERA PYAAR HAI मी तिथे प्यार करदू छू 😘❤️</div>
+<div class="message">
+  Babyy tu mera sabbb haii<br>tu mera pyaar hai naaki timepasss❤️
+</div>
 
 <button id="playBtn">🎶 Play Music</button>
 
@@ -25,16 +92,29 @@
 <script>
 function createHeart() {
     const heart = document.createElement('div');
-    heart.className = 'heart';
+    heart.className = Math.random() > 0.6 ? 'heart' : 'smallHeart';
     heart.innerHTML = '❤️';
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    heart.style.animationDuration = (3 + Math.random() * 4) + 's';
     document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+    setTimeout(() => heart.remove(), 7000);
 }
-setInterval(createHeart, 300);
 
-// Unmute YouTube when user clicks the button
+function createStar() {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.innerHTML = '✨';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDuration = (4 + Math.random() * 3) + 's';
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 7000);
+}
+
+// Generate hearts and stars continuously
+setInterval(createHeart, 300);
+setInterval(createStar, 500);
+
+// Unmute and play music when user clicks the button
 document.getElementById('playBtn').addEventListener('click', function(){
     const player = document.getElementById('ytPlayer');
     player.src = "https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=0&loop=1&playlist=Vd1KfRA0kWw";
@@ -44,4 +124,3 @@ document.getElementById('playBtn').addEventListener('click', function(){
 
 </body>
 </html>
-
