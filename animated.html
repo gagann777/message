@@ -3,73 +3,45 @@
 <head>
   <title>Special Animated Message</title>
   <style>
-      body {
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background: #ffdde6;
-          font-family: 'Arial', sans-serif;
-      }
-
-      .message {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 38px;
-          color: #ff0055;
-          font-weight: bold;
-          text-shadow: 0 0 20px #ff0055;
-          animation: fadeIn 2s ease-in-out;
-          text-align: center;
-      }
-
-      @keyframes fadeIn {
-          from { opacity: 0; transform: translate(-50%, -40%); }
-          to   { opacity: 1; transform: translate(-50%, -50%); }
-      }
-
-      .heart {
-          position: fixed;
-          top: -10px;
-          color: #ff3366;
-          font-size: 25px;
-          animation: fall 5s linear infinite;
-          user-select: none;
-      }
-
-      @keyframes fall {
-          0% { transform: translateY(-100px); opacity: 1; }
-          100% { transform: translateY(120vh); opacity: 0; }
-      }
+      body { margin:0; padding:0; overflow:hidden; background:#ffdde6; font-family:Arial; }
+      .message { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:38px; color:#ff0055; font-weight:bold; text-shadow:0 0 20px #ff0055; animation:fadeIn 2s ease-in-out; text-align:center; }
+      @keyframes fadeIn { from { opacity:0; transform:translate(-50%,-40%);} to {opacity:1; transform:translate(-50%,-50%);} }
+      .heart { position:fixed; top:-10px; color:#ff3366; font-size:25px; animation:fall 5s linear infinite; user-select:none; }
+      @keyframes fall {0%{transform:translateY(-100px);opacity:1;}100%{transform:translateY(120vh);opacity:0;}}
+      #playBtn { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); padding:10px 20px; font-size:18px; background:#ff3366; color:white; border:none; border-radius:8px; cursor:pointer;}
   </style>
 </head>
 <body>
 
-  <!-- ❤️ The Message -->
-  <div class="message">tere se hi toh meraa time hai babyyy😘❤️ tu mera timepaas nhi hai babee tu hi sabb hai sachh mee mjaaak krr rha thaa yrr </div>
+<div class="message">BABYY TU MERA TIMEPASS NHII HAI YRR TU HIJ MERAA SABB HAII MERA PYAAR HAI मी तिथे प्यार करदू छू 😘❤️</div>
 
-  <!-- 🎶 Background Music (YouTube embed, autoplay + loop) -->
-  <iframe width="0" height="0"
-      src="https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=0&loop=1&playlist=Vd1KfRA0kWw"
-      frameborder="0" allow="autoplay">
-  </iframe>
+<button id="playBtn">🎶 Play Music</button>
 
-  <!-- 💕 Falling Hearts Script -->
-  <script>
-      function createHeart() {
-          const heart = document.createElement('div');
-          heart.className = 'heart';
-          heart.innerHTML = '❤️';
-          heart.style.left = Math.random() * 100 + 'vw';
-          heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-          document.body.appendChild(heart);
+<!-- YouTube iframe (muted autoplay) -->
+<iframe id="ytPlayer" width="0" height="0" 
+    src="https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=1&loop=1&playlist=Vd1KfRA0kWw" 
+    frameborder="0" allow="autoplay"></iframe>
 
-          setTimeout(() => heart.remove(), 5000);
-      }
+<script>
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
 
-      setInterval(createHeart, 300);
-  </script>
+// Unmute YouTube when user clicks the button
+document.getElementById('playBtn').addEventListener('click', function(){
+    const player = document.getElementById('ytPlayer');
+    player.src = "https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=0&loop=1&playlist=Vd1KfRA0kWw";
+    this.style.display = 'none';
+});
+</script>
 
 </body>
 </html>
+
