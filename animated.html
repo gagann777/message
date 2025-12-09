@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Special Animated Message</title>
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background: #ffdde6;
+          font-family: 'Arial', sans-serif;
+      }
+
+      .message {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 38px;
+          color: #ff0055;
+          font-weight: bold;
+          text-shadow: 0 0 20px #ff0055;
+          animation: fadeIn 2s ease-in-out;
+          text-align: center;
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translate(-50%, -40%); }
+          to   { opacity: 1; transform: translate(-50%, -50%); }
+      }
+
+      .heart {
+          position: fixed;
+          top: -10px;
+          color: #ff3366;
+          font-size: 25px;
+          animation: fall 5s linear infinite;
+          user-select: none;
+      }
+
+      @keyframes fall {
+          0% { transform: translateY(-100px); opacity: 1; }
+          100% { transform: translateY(120vh); opacity: 0; }
+      }
+  </style>
+</head>
+<body>
+
+  <!-- ❤️ The Message -->
+  <div class="message">tere se hi toh meraa time hai babyyy😘❤️</div>
+
+  <!-- 🎶 Background Music (YouTube embed, autoplay + loop) -->
+  <iframe width="0" height="0"
+      src="https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=0&loop=1&playlist=Vd1KfRA0kWw"
+      frameborder="0" allow="autoplay">
+  </iframe>
+
+  <!-- 💕 Falling Hearts Script -->
+  <script>
+      function createHeart() {
+          const heart = document.createElement('div');
+          heart.className = 'heart';
+          heart.innerHTML = '❤️';
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+          document.body.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 5000);
+      }
+
+      setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
