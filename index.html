@@ -1,75 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Special Message</title>
-  <style>
-      body {
-          margin: 0;
-          padding: 0;
-          overflow: hidden;
-          background: #ffdde6;
-          font-family: 'Arial', sans-serif;
-      }
+<meta charset="UTF-8">
+<title>Love Message Animation</title>
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+    }
 
-      .message {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          font-size: 38px;
-          color: #ff0055;
-          font-weight: bold;
-          text-shadow: 0 0 20px #ff0055;
-          animation: fadeIn 2s ease-in-out;
-          text-align: center;
-      }
+    /* Pulsing giant hearts in background */
+    .heart-bg {
+        position: fixed;
+        width: 200px;
+        height: 200px;
+        font-size: 150px;
+        animation: pulse 3s infinite ease-in-out;
+        opacity: 0.2;
+        pointer-events: none;
+        user-select: none;
+    }
 
-      @keyframes fadeIn {
-          from { opacity: 0; transform: translate(-50%, -40%); }
-          to   { opacity: 1; transform: translate(-50%, -50%); }
-      }
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.15; }
+        50% { transform: scale(1.4); opacity: 0.3; }
+        100% { transform: scale(1); opacity: 0.15; }
+    }
 
-      .heart {
-          position: fixed;
-          top: -10px;
-          color: #ff3366;
-          font-size: 25px;
-          animation: fall 5s linear infinite;
-          user-select: none;
-      }
+    /* Love text animation */
+    .message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3.5rem;
+        color: #ff4d6d;
+        font-weight: 900;
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 0, 89, 0.9);
+        opacity: 0;
+        animation: fadeInText 3s ease-out forwards;
+    }
 
-      @keyframes fall {
-          0% { transform: translateY(-100px); opacity: 1; }
-          100% { transform: translateY(120vh); opacity: 0; }
-      }
-  </style>
+    @keyframes fadeInText {
+        0% { opacity: 0; transform: translate(-50%, -40%); }
+        100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    /* Floating kiss emojis */
+    .kiss {
+        position: absolute;
+        font-size: 40px;
+        animation: floatUp 5s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-150vh) rotate(360deg); opacity: 0; }
+    }
+</style>
 </head>
 <body>
 
-  <!-- ❤️ The Message -->
-  <div class="message">tere se hi toh meraa time hai babyyy😘❤️</div>
+<!-- Background hearts -->
+<div class="heart-bg" style="top:10%; left:10%;">❤️</div>
+<div class="heart-bg" style="top:70%; left:70%; animation-delay:1s;">❤️</div>
+<div class="heart-bg" style="top:40%; left:80%; animation-delay:2s;">❤️</div>
+<div class="heart-bg" style="top:80%; left:30%; animation-delay:1.5s;">❤️</div>
 
-  <!-- 🎶 Background Music (YouTube embed, autoplay + loop) -->
-  <iframe width="0" height="0"
-      src="https://www.youtube.com/embed/Vd1KfRA0kWw?autoplay=1&mute=0&loop=1&playlist=Vd1KfRA0kWw"
-      frameborder="0" allow="autoplay">
-  </iframe>
+<!-- Main Message -->
+<div class="message">
+    I FUCKINGGG LOVEE YOUU BIIIBBIII 😘❤️
+</div>
 
-  <!-- 💕 Falling Hearts Script -->
-  <script>
-      function createHeart() {
-          const heart = document.createElement('div');
-          heart.className = 'heart';
-          heart.innerHTML = '❤️';
-          heart.style.left = Math.random() * 100 + 'vw';
-          heart.style.animationDuration = (3 + Math.random() * 3) + 's';
-          document.body.appendChild(heart);
+<script>
+    // Create floating kiss emojis
+    function createKiss() {
+        const kiss = document.createElement("div");
+        kiss.classList.add("kiss");
+        kiss.innerHTML = "😘";
 
-          setTimeout(() => heart.remove(), 5000);
-      }
+        kiss.style.left = Math.random() * window.innerWidth + "px";
+        kiss.style.bottom = "-50px";
+        kiss.style.fontSize = (30 + Math.random() * 40) + "px";
+        kiss.style.animationDuration = (4 + Math.random() * 3) + "s";
 
-      setInterval(createHeart, 300);
-  </script>
+        document.body.appendChild(kiss);
+
+        setTimeout(() => kiss.remove(), 5000);
+    }
+
+    setInterval(createKiss, 300);
+</script>
 
 </body>
 </html>
