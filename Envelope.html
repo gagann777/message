@@ -16,24 +16,42 @@
         overflow: hidden;
     }
 
+    /* Falling petals */
+    .petal {
+        position: absolute;
+        top: -50px;
+        font-size: 30px;
+        animation: fall linear infinite;
+        opacity: 0.8;
+        z-index: 1;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+        }
+    }
+
+    /* Question */
     .question-box {
         text-align: center;
+        z-index: 3;
     }
 
     .question {
-        font-size: 36px;
+        font-size: 60px;
         color: #b1124a;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         font-weight: bold;
     }
 
     button {
-        padding: 12px 30px;
-        font-size: 20px;
+        padding: 20px 50px;
+        font-size: 30px;
         border: none;
-        border-radius: 25px;
+        border-radius: 30px;
         cursor: pointer;
-        margin: 10px;
+        margin: 20px;
     }
 
     .yes {
@@ -53,72 +71,97 @@
         flex-direction: column;
         align-items: center;
         position: relative;
+        z-index: 3;
     }
 
     .envelope {
-        font-size: 200px; /* BIG envelope */
+        font-size: 300px; /* BIG envelope */
         cursor: pointer;
-        z-index: 2;
+        z-index: 3;
+        transition: transform 0.5s ease;
     }
 
     .hint {
-        font-size: 20px;
+        font-size: 30px;
         color: #b1124a;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .message {
         position: absolute;
         top: 50%;
-        font-size: 36px;
+        font-size: 50px;
         color: #b1124a;
+        text-align: center;
+        line-height: 1.5;
         opacity: 0;
         transform: translateY(40px);
-        transition: all 0.8s ease;
+        transition: all 1s ease;
         font-weight: bold;
+        z-index: 4;
     }
 
     .message.show {
         opacity: 1;
-        transform: translateY(-120px);
+        transform: translateY(-150px);
     }
 </style>
 </head>
 
 <body>
 
+<!-- Question -->
 <div class="question-box" id="questionBox">
     <div class="question">gagan is myy lovee? 💕</div>
     <button class="yes" onclick="showEnvelope()">Yes 😘</button>
     <button class="no" id="noBtn">No 😐</button>
 </div>
 
+<!-- Envelope -->
 <div class="envelope-container" id="envelopeBox">
-    <div class="envelope" onclick="openEnvelope()">💌</div>
-    <div class="hint">Click here to open</div>
+    <div class="envelope">💌</div>
+    <div class="hint">Wait for it...</div>
     <div class="message" id="loveMessage">
-        I lovee you darlaa 😘
+        thats my goodgirrlll 😘<br>
+        i lovee you myy moon🌕❤️
     </div>
 </div>
 
 <script>
+    // NO button runs away
     const noBtn = document.getElementById("noBtn");
-
     noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 150);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
     });
 
+    // Falling petals
+    const petalsArray = ["🌸","🌹","💮"];
+    function createPetal() {
+        const petal = document.createElement("div");
+        petal.classList.add("petal");
+        petal.innerText = petalsArray[Math.floor(Math.random() * petalsArray.length)];
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.animationDuration = 4 + Math.random() * 4 + "s";
+        petal.style.fontSize = 20 + Math.random() * 30 + "px";
+        document.body.appendChild(petal);
+        setTimeout(() => { petal.remove(); }, 8000);
+    }
+    setInterval(createPetal, 300);
+
+    // Show envelope after YES
     function showEnvelope() {
         document.getElementById("questionBox").style.display = "none";
-        document.getElementById("envelopeBox").style.display = "flex";
-    }
+        const envelopeBox = document.getElementById("envelopeBox");
+        envelopeBox.style.display = "flex";
 
-    function openEnvelope() {
-        document.querySelector(".envelope").innerText = "💖";
-        document.getElementById("loveMessage").classList.add("show");
+        // After 2s, open envelope automatically
+        setTimeout(() => {
+            document.querySelector(".envelope").innerText = "💖";
+            document.getElementById("loveMessage").classList.add("show");
+        }, 2000);
     }
 </script>
 
