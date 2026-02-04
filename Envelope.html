@@ -1,75 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>For You ❤️</title>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
 
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: #ffd6e8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
-        }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: #ffd6e8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
 
-        .container {
-            text-align: center;
-        }
+    .question-box {
+        text-align: center;
+    }
 
-        .envelope {
-            font-size: 140px;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-        }
+    .question {
+        font-size: 36px;
+        color: #b1124a;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
 
-        .envelope:hover {
-            transform: scale(1.1);
-        }
+    button {
+        padding: 12px 30px;
+        font-size: 20px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: 10px;
+    }
 
-        .click-text {
-            margin-top: 10px;
-            font-size: 20px;
-            color: #b1124a;
-            font-weight: bold;
-        }
+    .yes {
+        background: #ff4f81;
+        color: white;
+    }
 
-        .message {
-            margin-top: 30px;
-            font-size: 36px;
-            color: #b1124a;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.6s ease;
-        }
+    .no {
+        background: #999;
+        color: white;
+        position: absolute;
+    }
 
-        .message.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-    </style>
+    /* Envelope section */
+    .envelope-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .envelope {
+        font-size: 200px; /* BIG envelope */
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .hint {
+        font-size: 20px;
+        color: #b1124a;
+        margin-top: 10px;
+    }
+
+    .message {
+        position: absolute;
+        top: 50%;
+        font-size: 36px;
+        color: #b1124a;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+        font-weight: bold;
+    }
+
+    .message.show {
+        opacity: 1;
+        transform: translateY(-120px);
+    }
+</style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="envelope" onclick="openEnvelope()">💌</div>
-        <div class="click-text">Click here to open</div>
+<div class="question-box" id="questionBox">
+    <div class="question">gagan is myy lovee? 💕</div>
+    <button class="yes" onclick="showEnvelope()">Yes 😘</button>
+    <button class="no" id="noBtn">No 😐</button>
+</div>
 
-        <div class="message" id="loveMessage">
-            I lovee you darlaa 😘
-        </div>
+<div class="envelope-container" id="envelopeBox">
+    <div class="envelope" onclick="openEnvelope()">💌</div>
+    <div class="hint">Click here to open</div>
+    <div class="message" id="loveMessage">
+        I lovee you darlaa 😘
     </div>
+</div>
 
-    <script>
-        function openEnvelope() {
-            document.querySelector('.envelope').innerText = "💖";
-            document.getElementById("loveMessage").classList.add("show");
-        }
-    </script>
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    });
+
+    function showEnvelope() {
+        document.getElementById("questionBox").style.display = "none";
+        document.getElementById("envelopeBox").style.display = "flex";
+    }
+
+    function openEnvelope() {
+        document.querySelector(".envelope").innerText = "💖";
+        document.getElementById("loveMessage").classList.add("show");
+    }
+</script>
 
 </body>
 </html>
