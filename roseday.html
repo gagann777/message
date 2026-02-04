@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Rose Day ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #ffd6e8; /* light pink */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', cursive;
+            overflow: hidden;
+        }
+
+        .rose {
+            font-size: 180px;
+            animation: bloom 2s ease-out forwards;
+            transform: scale(0);
+        }
+
+        @keyframes bloom {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .text {
+            margin-top: 20px;
+            font-size: 32px;
+            color: #c2185b;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="rose">🌹</div>
+
+    <div class="text">
+        HAPPYY ROSEE DAYY MYY PHOOOOL 😘
+    </div>
+
+</body>
+</html>
