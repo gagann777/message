@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For You ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #ffd6e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .envelope {
+            font-size: 140px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.1);
+        }
+
+        .click-text {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #b1124a;
+            font-weight: bold;
+        }
+
+        .message {
+            margin-top: 30px;
+            font-size: 36px;
+            color: #b1124a;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="envelope" onclick="openEnvelope()">💌</div>
+        <div class="click-text">Click here to open</div>
+
+        <div class="message" id="loveMessage">
+            I lovee you darlaa 😘
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.querySelector('.envelope').innerText = "💖";
+            document.getElementById("loveMessage").classList.add("show");
+        }
+    </script>
+
+</body>
+</html>
