@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiss Day Message 💋</title>
+
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #ffc0cb; /* Light Pink */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        transition: background-color 1s ease;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .kiss {
+        position: absolute;
+        animation: kissMove 2s infinite ease-in-out;
+    }
+
+    @keyframes kissMove {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.6);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .message {
+        position: absolute;
+        font-size: 60px;
+        font-weight: bold;
+        color: #ff0066;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="message" id="loveMessage">
+    Happyy Kiss dayy myy lovee❤️
+</div>
+
+<script>
+    const body = document.body;
+
+    // Create multiple kiss emojis
+    for (let i = 0; i < 40; i++) {
+        let kiss = document.createElement("div");
+        kiss.classList.add("kiss");
+        kiss.innerHTML = "💋";
+
+        let size = Math.random() * 40 + 20;
+        kiss.style.fontSize = size + "px";
+
+        kiss.style.top = Math.random() * 100 + "vh";
+        kiss.style.left = Math.random() * 100 + "vw";
+
+        kiss.style.animationDuration = (Math.random() * 2 + 1) + "s";
+
+        body.appendChild(kiss);
+    }
+
+    // After 2 seconds make background lighter & show message
+    setTimeout(() => {
+        body.style.backgroundColor = "#ffe6f0"; // lighter pink
+        document.getElementById("loveMessage").style.opacity = "1";
+    }, 2000);
+</script>
+
+</body>
+</html>
