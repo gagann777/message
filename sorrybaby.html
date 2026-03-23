@@ -45,6 +45,17 @@ button:hover {
     background: #ffe6eb;
 }
 
+/* Big kiss emoji */
+.kiss {
+    position: absolute;
+    font-size: 120px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
 /* Floating hearts */
 .heart {
     position: absolute;
@@ -78,13 +89,17 @@ button:hover {
         I am sorrryyy babyyy pleaseee forgive mee🥺🧎🏽
     </h1>
 
-    <button onclick="forgive()">Tap if you forgive me 💕</button>
+    <button onclick="showKiss()">Tap if you forgive me 💕</button>
 </div>
 
+<div id="kissEmoji" class="kiss">😘</div>
+
 <script>
-// popup after click
-function forgive() {
-    alert("❤️");
+// Show big kiss emoji
+function showKiss() {
+    const kiss = document.getElementById("kissEmoji");
+    kiss.style.transform = "translate(-50%, -50%) scale(1.5)";
+    kiss.style.opacity = "1";
 }
 
 // floating hearts
